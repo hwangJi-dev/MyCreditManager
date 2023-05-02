@@ -26,7 +26,7 @@ while true {
     case "5":
         getAvlScore()
     case "X", "x":
-        break
+        exit(1)
     default:
         print("뭔가 입력이 잘못되었습니다. 1~5 사이의 숫자 혹은 X를 입력해주세요.")
     }
