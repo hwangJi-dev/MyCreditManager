@@ -125,11 +125,50 @@ func delScore() {
 
 // MARK: 평점보기
 func getAvlScore() {
+    print("평점을 알고싶은 학생의 이름을 입력해주세요")
+    
+    if let student = readLine() {
+        if isCorrenctInput(student) {
+            if let studentSubjectDict = studentDict[student] {
+                var sum: Double = 0
+                
+                studentSubjectDict.forEach({
+                    print("\($0.key): \($0.value)")
+                    
+                    switch $0.value {
+                    case "A+":
+                        sum += 4.5
+                    case "A":
+                        sum += 4
+                    case "B+":
+                        sum += 3.5
+                    case "B":
+                        sum += 3
+                    case "C+":
+                        sum += 2.5
+                    case "C":
+                        sum += 2
+                    case "D+":
+                        sum += 1.5
+                    case "D":
+                        sum += 1
+                    default:
+                        sum += 0
+                    }
+                })
+                
+                print("평점 : ", String(format: "%.2f", sum / Double(studentSubjectDict.count)))
+            } else {
+                print("\(student) 학생을 찾지 못했습니다.")
+            }
+        }
+    }
 }
 
-// MARK: 종료
+// MARK: 프로그램 종료
 func exitProgram() {
-    
+    print("프로그램을 종료합니다...")
+    exit(0)
 }
 
 // MARK: 올바른 입력인지 확인
