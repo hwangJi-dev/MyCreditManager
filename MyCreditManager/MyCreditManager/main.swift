@@ -75,19 +75,24 @@ func addScore() {
     if let command = readLine() {
         if isCorrenctInput(command) {
             let command = command.components(separatedBy: .whitespaces)
-            let student = command[0]
-            let subject = command[1]
-            let score = command[2]
             
-            if command.count != 3 || (score != "A+" && score != "A" && score != "B+" && score != "B" && score != "C+" && score != "C" && score != "D+" && score != "D" && score != "F") {
-                print("입력이 잘못되었습니다. 다시 확인해주세요.")
-            } else {
-                if let _ = studentDict[student] {
-                    studentDict[student]![subject] = score
-                    print("\(student) 학생의 \(subject) 과목이 \(score)로 추가(변경) 되었습니다.")
+            if command.count == 3 {
+                let student = command[0]
+                let subject = command[1]
+                let score = command[2]
+                
+                if score != "A+" && score != "A" && score != "B+" && score != "B" && score != "C+" && score != "C" && score != "D+" && score != "D" && score != "F" {
+                    print("입력이 잘못되었습니다. 다시 확인해주세요.")
                 } else {
-                    print("\(student) 학생을 찾지 못했습니다.")
+                    if let _ = studentDict[student] {
+                        studentDict[student]![subject] = score
+                        print("\(student) 학생의 \(subject) 과목이 \(score)로 추가(변경) 되었습니다.")
+                    } else {
+                        print("\(student) 학생을 찾지 못했습니다.")
+                    }
                 }
+            } else {
+                print("입력이 잘못되었습니다. 다시 확인해주세요.")
             }
         }
     }
@@ -95,6 +100,27 @@ func addScore() {
 
 // MARK: 성적삭제
 func delScore() {
+    print("성적을 삭제할 학생의 이름, 과목 이름을 띄어쓰기로 구분하여 차례로 작성해주세요.\n입력예) Mickey Swift")
+    
+    if let command = readLine() {
+        if isCorrenctInput(command) {
+            let command = command.components(separatedBy: .whitespaces)
+            
+            if command.count == 2 {
+                let student = command[0]
+                let subject = command[1]
+                
+                if let _ = studentDict[student] {
+                    studentDict[student]!.removeValue(forKey: subject)
+                    print("\(student) 학생의 \(subject) 과목의 성적이 삭제되었습니다.")
+                } else {
+                    print("\(student) 학생을 찾지 못했습니다.")
+                }
+            } else {
+                print("입력이 잘못되었습니다. 다시 확인해주세요.")
+            }
+        }
+    }
 }
 
 // MARK: 평점보기
