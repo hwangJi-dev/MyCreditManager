@@ -34,6 +34,21 @@ while true {
 
 // MARK: 학생추가
 func addStudent() {
+    print("추가할 학생의 이름을 입력해주세요")
+    
+    if let student = readLine() {
+        // 잘못된 입력 처리
+        if student == "" || student == " " || student == "\n" || Int(student) != nil {
+            print("입력이 잘못되었습니다. 다시 확인해주세요.")
+        } else { // 학생 추가
+            if studentDict[student] == nil {
+                studentDict[student] = [:]
+                print("\(student) 학생을 추가했습니다.")
+            } else { // 이미 존재하는 학생 처리
+                print("\(student)은 이미 존재하는 학생입니다. 추가하지 않습니다.")
+            }
+        }
+    }
 }
 
 // MARK: 학생삭제
