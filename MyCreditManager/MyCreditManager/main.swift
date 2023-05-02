@@ -52,6 +52,20 @@ func addStudent() {
 
 // MARK: 학생삭제
 func delStudent() {
+    print("삭제할 학생의 이름을 입력해주세요")
+    
+    if let student = readLine() {
+        // 잘못된 입력 처리
+        if isCorrenctInput(student) {
+            if studentDict[student] == nil {
+                print("\(student) 학생을 찾지 못했습니다.")
+            } else {
+                studentDict.removeValue(forKey: student)
+                print("\(student) 학생을 삭제하였습니다.")
+            }
+        }
+    }
+    
 }
 
 // MARK: 성적추가(변경)
