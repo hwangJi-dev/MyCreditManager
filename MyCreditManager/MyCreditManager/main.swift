@@ -70,6 +70,27 @@ func delStudent() {
 
 // MARK: 성적추가(변경)
 func addScore() {
+    print("성적을 추가할 학생의 이름, 과목 이름, 성적(A+, A, F 등)을 띄어쓰기로 구분하여 차례로 작성해주세요.\n입력예) Mickey Swift A+\n만약에 학생의 성적 중 해당 과목이 존재하면 기존 점수가 갱신됩니다.")
+    
+    if let command = readLine() {
+        if isCorrenctInput(command) {
+            let command = command.components(separatedBy: .whitespaces)
+            let student = command[0]
+            let subject = command[1]
+            let score = command[2]
+            
+            if command.count != 3 || (score != "A+" && score != "A" && score != "B+" && score != "B" && score != "C+" && score != "C" && score != "D+" && score != "D" && score != "F") {
+                print("입력이 잘못되었습니다. 다시 확인해주세요.")
+            } else {
+                if let _ = studentDict[student] {
+                    studentDict[student]![subject] = score
+                    print("\(student) 학생의 \(subject) 과목이 \(score)로 추가(변경) 되었습니다.")
+                } else {
+                    print("\(student) 학생을 찾지 못했습니다.")
+                }
+            }
+        }
+    }
 }
 
 // MARK: 성적삭제
