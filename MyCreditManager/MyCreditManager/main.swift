@@ -38,9 +38,8 @@ func addStudent() {
     
     if let student = readLine() {
         // 잘못된 입력 처리
-        if student == "" || student == " " || student == "\n" || Int(student) != nil {
-            print("입력이 잘못되었습니다. 다시 확인해주세요.")
-        } else { // 학생 추가
+        if isCorrenctInput(student) {
+            // 학생 추가
             if studentDict[student] == nil {
                 studentDict[student] = [:]
                 print("\(student) 학생을 추가했습니다.")
@@ -70,4 +69,14 @@ func getAvlScore() {
 // MARK: 종료
 func exitProgram() {
     
+}
+
+// MARK: 올바른 입력인지 확인
+func isCorrenctInput(_ input: String) -> Bool {
+    if input == "" || input == " " || input == "\n" || Int(input) != nil {
+        print("입력이 잘못되었습니다. 다시 확인해주세요.")
+        return false
+    }
+    
+    return true
 }
